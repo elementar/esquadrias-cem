@@ -9,3 +9,31 @@ class Time
     DateTime.new(year, month, day, hour, min, seconds, offset)
   end
 end
+
+module Builder
+  class XmlMarkup
+    def dump_hash!(hash, keys)
+      keys.each do |hash_key, tag|
+        v = db_val(hash, hash_key)
+        self.tag!(tag, v) unless v.nil?
+      end
+      self
+    end
+
+    private
+
+    def db_val(db_obj, sym)
+      v = db_obj[sym]
+      case v
+        when Time then
+          v.to_datetime
+        when 'F' then
+          false
+        when 'T' then
+          true
+        else
+          v
+      end
+    end
+  end
+end
