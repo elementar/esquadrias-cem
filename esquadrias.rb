@@ -34,6 +34,11 @@ module Esquadrias
                             :id_usuario_atualizacao => :atualizado_por, :obr_data_alteracao => :atualizado_em,
                             :obr_endereco => :endereco
 
+            obra.cidade db_obra[:cid_nome], :id_cem => db_obra[:obr_id_cidade], :ibge => db_obra[:idibge] if db_obra[:obr_id_cidade]
+
+            obra.dump_hash! db_obra, :obr_bairro => :bairro, :obr_cep => :cep, :obr_tel => :telefone, :obr_fax => :fax,
+                            :obr_contato => :contato
+
             obra.cliente :id_cem => db_obra[:id_cliente_obra] do |cli|
               DB[:cliente].where(:id_cliente => db_obra[:id_cliente_obra]).all.each do |db_cliente|
                 cli.dump_hash! db_cliente, :cli_nome => :nome, :cli_tipo => :tipo,
@@ -56,11 +61,6 @@ module Esquadrias
                 end
               end
             end
-
-            obra.cidade db_obra[:cid_nome], :id_cem => db_obra[:obr_id_cidade], :ibge => db_obra[:idibge] if db_obra[:obr_id_cidade]
-
-            obra.dump_hash! db_obra, :obr_bairro => :bairro, :obr_cep => :cep, :obr_tel => :telefone, :obr_fax => :fax,
-                            :obr_contato => :contato
 
             obra.items do |itens|
               DB[:obitens].where(:id_obra => db_obra[:id_obra]).all.each do |db_item|
