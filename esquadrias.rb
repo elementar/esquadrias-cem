@@ -20,7 +20,8 @@ module Esquadrias
 
     db_obras = DB[:obra].left_outer_join(:cidade, :id_cidade => :obr_id_cidade).where(:obr_codigo => codigos)
 
-    builder = Builder::XmlMarkup.new :indent => 2
+    builder = Builder::XmlMarkup.new
+    builder.instruct!
     builder.integracao do |integracao|
       integracao.meta do |meta|
         meta.data_extracao(DateTime.now)
