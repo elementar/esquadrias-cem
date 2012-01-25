@@ -44,6 +44,16 @@ module Esquadrias
                                :cli_homepage => :homepage, :cli_email => :email,
                                :cli_obs => :observacao
                 cli.ativo db_cliente[:desativado] != 'F'
+
+                cli.enderecos do |ends|
+                  DB[:endereco].left_outer_join(:cidade, :id_cidade => :id_cidade).where(:id_cliente => db_cliente[:id_cliente]).all.each do |db_ender|
+                    ends.endereco :id_cem => db_ender[:id_endereco] do |ender|
+                      ender.cidade db_ender[:cid_nome], :id_cem => db_ender[:id_cidade], :ibge => db_ender[:idibge] if db_ender[:id_cidade]
+                      ender.dump_hash! db_ender, :end_tipo => :tipo, :end_endereco => :logradouro, :end_numero => :numero,
+                                       :end_bairro => :bairro, :end_cep => :cep, :end_tel => :telefone, :end_fax => :fax
+                    end
+                  end
+                end
               end
             end
 
