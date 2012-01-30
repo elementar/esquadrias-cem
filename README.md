@@ -9,6 +9,7 @@ Este projeto provê  integração do banco de dados do sistema CEM com o Sistema
 * RVM: http://beginrescueend.com/
 * Ruby 1.8.7: `rvm install 1.8.7`
 * Git
+* Ferramentas cliente do Firebird
 
 ## Preparando o Ambiente: Instalando o Ruby
 
