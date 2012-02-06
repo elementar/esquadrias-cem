@@ -24,12 +24,18 @@ Este projeto provê integração do banco de dados do sistema CEM com o Sistema 
 * Alterar o arquivo `esquadrias.rb`, para apontar para o banco Firebird;
 * Fazer a instalação das dependências: `cd /apps/esquadrias-cem; bundle install`
 
+## Testando a instalação
+
+* Executar, no diretório da aplicação, o comando: `bundle exec rackup -p 9393`
+* Tentar acessar pelo navegador o endereço: http://(ip-do-servidor):9393/obras/(codigo), substituindo (ip-do-servidor)
+  pelo IP do servidor e (codigo) pelo código de alguma obra válida no CEM.
+
 ## Colocando o aplicativo no ar
 
 ### Opção 1: comando direto
 
 * Acessar o diretório onde o aplicativo está instalado;
-* Executar o serviço através do comando: `bundle exec rackup -p 9393`
+* Executar o serviço através do comando: `nohup bundle exec rackup -p 9393 &`
 
 ### Opção 2: Passenger + Apache ou ngnix
 
