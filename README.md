@@ -1,6 +1,6 @@
 # Projeto
 
-Este projeto provê  integração do banco de dados do sistema CEM com o Sistema de Esquadrias.
+Este projeto provê integração do banco de dados do sistema CEM com o Sistema de Esquadrias.
 
 # Instalação
 
@@ -22,7 +22,13 @@ Este projeto provê  integração do banco de dados do sistema CEM com o Sistema
 * Fazer o clone da aplicação: `git clone git@github.com:elementar/esquadrias-cem.git /apps/esquadrias-cem`;
 * Alterar o arquivo `esquadrias.rb`, para apontar para o banco Firebird;
 * Fazer a instalação das dependências: `cd /apps/esquadrias-cem; bundle install`
-* Executar o serviço através do comando: `rackup -p 9393 -d`
+* Executar o serviço através do comando: `bundle exec rackup -p 9393`
+
+## Após a Instalação
+
+* Liberar a porta 9393 no _firewall_ da empresa, para o IP: 184.73.155.121
+  (pode ser necessário fazer um NAT, consulte o suporte de rede da sua empresa);
+* Anotar o IP externo e informar à Elementar, para finalizar a configuração da conta.
 
 # Contato
 
